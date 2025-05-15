@@ -21,6 +21,7 @@ public class LoginTest {
 
        // Configuração do Chrome para rodar em ambiente CI (como GitHub Actions)
         ChromeOptions options = new ChromeOptions();
+        options.setBinary("/usr/bin/google-chrome");
         options.addArguments("--headless"); // Executa sem interface gráfica
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
@@ -35,6 +36,7 @@ public class LoginTest {
 
         String email = System.getenv("LOGIN_EMAIL");
         String senha = System.getenv("LOGIN_SENHA");
+
         
 
         driver.findElement(By.cssSelector("#login")).sendKeys(email);
