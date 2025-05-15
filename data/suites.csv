@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu May 15 21:47:54 UTC 2025","Thu May 15 21:48:02 UTC 2025","7759","","projeto_teste.tests.PainelAssinaturaTest","","projeto_teste.tests.PainelAssinaturaTest","acessarPainelDeAssinatura","Acessar o painel de assinatura","Teste que acessa o painel de assinatura após fazer login"
+"passed","Thu May 15 21:47:48 UTC 2025","Thu May 15 21:47:54 UTC 2025","6318","","projeto_teste.tests.LoginTest","","projeto_teste.tests.LoginTest","fazerLogin","Fazer Login na aplicação","Teste que faz login com email e senha vindos do arquivo .env ou variáveis de ambiente"
