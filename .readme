@@ -117,19 +117,80 @@ jobs:
 
 ---
 
-## 📦 Dependências
+## 📆 Detalhamento do Teste de Login (`LoginTest.java`)
+
+```java
+@Epic("Login")
+@Feature("Tela de Login")
+public class LoginTest {
+
+    @Test
+    @Story("Login com credenciais válidas")
+    @DisplayName("Fazer Login na aplicação")
+    @Description("Teste que faz login com email e senha vindos do arquivo .env ou variáveis de ambiente")
+    @Severity(SeverityLevel.CRITICAL)
+    public void fazerLogin() {
+        Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+
+        String email = System.getenv("LOGIN_EMAIL");
+        if (email == null) email = dotenv.get("LOGIN_EMAIL");
+
+        String senha = System.getenv("LOGIN_SENHA");
+        if (senha == null) senha = dotenv.get("LOGIN_SENHA");
+
+        if (email == null || senha == null) {
+            throw new IllegalStateException("LOGIN_EMAIL e LOGIN_SENHA não definidos");
+        }
+
+        WebDriverManager.chromedriver().setup();
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage", "--remote-allow-origins=*");
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+        driver.get("https://applications.fsbr.com.br/homolog/assine--frontend/");
+
+        driver.findElement(By.xpath("//body/header/div[@class='buttons-header']/a[1]")).click();
+        driver.findElement(By.cssSelector("#login")).sendKeys(email);
+        driver.findElement(By.cssSelector("#senha")).sendKeys(senha);
+        driver.findElement(By.xpath("//button[normalize-space()='Entrar']")).click();
+
+        driver.quit();
+    }
+}
+```
+
+### ✅ Passos executados no teste:
+
+1. Carrega variáveis de ambiente ou do `.env`
+2. Configura o WebDriver para rodar com Google Chrome em modo headless
+3. Abre o site da aplicação
+4. Clica no botão de login
+5. Preenche os campos de email e senha
+6. Clica em "Entrar"
+7. Encerra o navegador
+
+---
+
+## 📆 Observações
+
+* O branch `gh-pages` é gerado automaticamente pela pipeline.
+* O link do relatório é atualizado a cada novo push na branch `main`.
+* Variáveis sensíveis como email e senha são lidas via ambiente ou `.env`, nunca diretamente no código.
+
+---
+
+## 💼 Dependências do Projeto
 
 * Java 17
 * Maven
 * Allure CLI
-* JUnit ou TestNG (dependendo do seu projeto)
-
----
-
-## 📌 Observações
-
-* O branch `gh-pages` é gerado automaticamente pela pipeline.
-* O link do relatório será atualizado a cada novo push na branch `main`.
+* JUnit 5
+* Selenium WebDriver
+* WebDriverManager
+* dotenv-java
 
 ---
 
