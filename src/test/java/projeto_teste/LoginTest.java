@@ -6,6 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 import java.time.Duration;
 
 public class LoginTest {
@@ -14,13 +17,15 @@ public class LoginTest {
     @DisplayName("Fazer Login na aplicação")
     public void fazerLogin() {
 
+        WebDriverManager.chromedriver().setup();
+
        // Configuração do Chrome para rodar em ambiente CI (como GitHub Actions)
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless"); // Executa sem interface gráfica
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-
         WebDriver driver = new ChromeDriver(options);
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get("https://applications.fsbr.com.br/homolog/assine--frontend/");
