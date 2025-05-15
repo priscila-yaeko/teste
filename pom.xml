@@ -56,13 +56,13 @@
       <version>5.2.2</version>
     </dependency>
 
-    <!-- Allure JUnit 5 Adapter -->
     <dependency>
-      <groupId>io.qameta.allure</groupId>
-      <artifactId>allure-junit5</artifactId>
-      <version>${allure.version}</version>
-      <scope>test</scope>
-    </dependency>
+  <groupId>io.qameta.allure</groupId>
+  <artifactId>allure-junit5</artifactId>
+  <version>2.21.0</version>
+  <scope>test</scope>
+</dependency>
+
 
   </dependencies>
 
@@ -86,19 +86,13 @@
 
       <!-- Plugin para gerar relatório HTML do Allure -->
       <plugin>
-        <groupId>io.qameta.allure</groupId>
-        <artifactId>allure-maven</artifactId>
-        <version>2.13.9</version>
-        <executions>
-          <execution>
-            <id>allure-report</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>report</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+  <groupId>io.qameta.allure</groupId>
+  <artifactId>allure-maven</artifactId>
+  <version>2.11.2</version>
+  <configuration>
+    <resultsDirectory>target/allure-results</resultsDirectory>
+  </configuration>
+</plugin>
 
       <!-- Plugin de compilação -->
       <plugin>
