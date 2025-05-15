@@ -198,3 +198,17 @@ public class LoginTest {
 
 **Priscila Yaeko Cunha**
 🔗 [GitHub](https://github.com/priscila-yaeko).
+
+✅ Como acessar o relatório Allure no navegador
+Vá até o seu repositório no GitHub:
+👉 https://github.com/priscila-yaeko/teste
+
+Clique em Settings (Configurações) → depois em Pages (ou “Pages” no menu lateral).
+
+Lá, você verá a URL publicada do GitHub Pages, algo como:
+👉 https://priscila-yaeko.github.io/teste/
+
+Clique nesse link e você verá o relatório Allure publicado.
+
+
+ 
