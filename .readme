@@ -1,0 +1,139 @@
+# Projeto de Testes Automatizados com Maven, Allure e GitHub Actions
+
+Este projeto foi configurado para executar testes automatizados utilizando **Java + Maven** e gerar relatórios bonitos com o **Allure Report**. Além disso, o relatório é publicado automaticamente via **GitHub Actions** no **GitHub Pages**.
+
+---
+
+## ✅ Funcionalidades
+
+* ✔️ Execução de testes com JUnit
+* ✔️ Geração de relatórios com Allure
+* ✔️ Pipeline de CI com GitHub Actions
+* ✔️ Deploy automático do relatório no GitHub Pages
+* ✔️ Armazenamento do relatório como artefato no GitHub
+
+---
+
+## 🧪 Executando localmente
+
+1. **Clone o projeto:**
+
+   ```bash
+   git clone https://github.com/priscila-yaeko/teste.git
+   cd teste
+   ```
+
+2. **Execute os testes com Maven:**
+
+   ```bash
+   mvn clean test
+   ```
+
+3. **Gere o relatório Allure localmente:**
+
+   ```bash
+   allure generate target/allure-results -o target/allure-report --clean
+   allure open target/allure-report
+   ```
+
+---
+
+## 🚀 Acesso ao Relatório
+
+O relatório gerado pela pipeline está disponível no GitHub Pages:
+
+🔗 **[Clique aqui para visualizar o Allure Report](https://priscila-yaeko.github.io/teste/)**
+
+---
+
+## ⚙️ GitHub Actions
+
+O workflow automatiza:
+
+* Build do projeto
+* Execução dos testes
+* Geração do relatório Allure
+* Upload como artefato
+* Deploy no GitHub Pages
+
+### 📋 Arquivo `.github/workflows/ci.yml`
+
+```yaml
+name: Java CI with Maven and Allure
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build and run tests
+        run: mvn clean test
+
+      - name: Install Allure CLI
+        run: |
+          wget https://github.com/allure-framework/allure2/releases/download/2.21.0/allure-2.21.0.zip
+          unzip allure-2.21.0.zip -d $HOME/
+
+      - name: Generate Allure report
+        run: |
+          export PATH=$HOME/allure-2.21.0/bin:$PATH
+          allure generate target/allure-results -o target/allure-report --clean
+
+      - name: Upload Allure report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: target/allure-report
+
+      - name: Deploy Allure report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: target/allure-report
+```
+
+---
+
+## 📦 Dependências
+
+* Java 17
+* Maven
+* Allure CLI
+* JUnit ou TestNG (dependendo do seu projeto)
+
+---
+
+## 📌 Observações
+
+* O branch `gh-pages` é gerado automaticamente pela pipeline.
+* O link do relatório será atualizado a cada novo push na branch `main`.
+
+---
+
+## 👩‍💼 Autora
+
+**Priscila Yaeko Cunha**
+🔗 [GitHub](https://github.com/priscila-yaeko)
