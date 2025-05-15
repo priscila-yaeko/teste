@@ -1,2 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Thu May 15 20:04:22 UTC 2025","Thu May 15 20:04:29 UTC 2025","7259","","projeto_teste.LoginTest","","projeto_teste.LoginTest","fazerLogin","Fazer Login na aplicação","Teste que faz login com email e senha vindos do arquivo .env ou variáveis de ambiente"
+"passed","Thu May 15 20:07:37 UTC 2025","Thu May 15 20:07:50 UTC 2025","12661","","projeto_teste.LoginTest","","projeto_teste.LoginTest","fazerLogin","Fazer Login na aplicação","Teste que faz login com email e senha vindos do arquivo .env ou variáveis de ambiente"
