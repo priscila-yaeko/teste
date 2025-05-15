@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: projeto_teste.tests.PainelAssinaturaTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.877 s -- in projeto_teste.tests.PainelAssinaturaTest

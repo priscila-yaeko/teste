@@ -1,1 +1,3 @@
-projeto_teste\LoginTest.class
+projeto_teste\tests\LoginTest.class
+projeto_teste\tests\PainelAssinaturaTest.class
+projeto_teste\setup\BaseTest.class
