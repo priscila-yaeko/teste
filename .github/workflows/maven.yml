@@ -37,3 +37,12 @@ jobs:
           # Inicia o servidor X virtual para ambiente headless (Xvfb)
           Xvfb :99 -screen 0 1920x1080x24 &
           mvn -B test --file pom.xml
+
+      - name: Gerar relatório de cobertura em HTML
+        run: mvn surefire-report:report-only
+
+      - name: Publicar relatório de cobertura em HTML
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-teste
+          path: target/site/surefire-report.html
