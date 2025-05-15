@@ -1,1 +1,0 @@
-[{"uid":"d610fbd430a6b792","name":"Acessar o painel de assinatura","time":{"start":1747344261147,"stop":1747344324644,"duration":63497},"status":"passed","severity":"normal"},{"uid":"b40f9a8a8f33c807","name":"Fazer Login na aplicação","time":{"start":1747344324703,"stop":1747344328327,"duration":3624},"status":"passed","severity":"critical"}]
