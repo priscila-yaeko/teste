@@ -23,14 +23,17 @@ jobs:
       - name: Install Google Chrome
         run: |
           sudo apt update
-          sudo apt install -y wget
+          sudo apt install -y wget unzip
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt install -y ./google-chrome-stable_current_amd64.deb
-          google-chrome --version  # Verifica se o Chrome foi instalado corretamente
+          google-chrome --version
 
-      - name: Run Test with Maven
-        run: mvn -B test --file pom.xml
+      - name: Run tests
         env:
           DISPLAY: :99.0
           LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
           LOGIN_SENHA: ${{ secrets.LOGIN_SENHA }}
+        run: |
+          # Inicia o servidor X virtual para ambiente headless (Xvfb)
+          Xvfb :99 -screen 0 1920x1080x24 &
+          mvn -B test --file pom.xml
