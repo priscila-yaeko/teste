@@ -17,6 +17,9 @@ public class LoginTeste {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get("https://applications.fsbr.com.br/homolog/assine--frontend/");
+        
+
+        driver.findElement(By.xpath("//body/header/div[@class='buttons-header']/a[1]")).click();
 
         driver.findElement(By.cssSelector("#login")).sendKeys("priscila.cunha@fsbr.com.br");
         driver.findElement(By.cssSelector("#senha")).sendKeys("Billy@2436");
