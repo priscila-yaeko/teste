@@ -8,7 +8,8 @@ import projeto_teste.setup.BaseTest;
 
 @Epic("Painel de Assinatura")
 @Feature("Visualizar a Assinatura salva na aplicação")
-public class PainelAssinatura extends BaseTest {
+
+public class PainelAssinaturaTest extends BaseTest {
 
     private LoginPage loginPage;
     private PainelAssinaturaPage painelAssinaturaPage;
