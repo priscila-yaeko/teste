@@ -1,28 +1,27 @@
-package projeto_teste.tests;
+package projeto_teste.setup;
 
-import io.qameta.allure.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.*;
+import io.github.cdimascio.dotenv.Dotenv;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import projeto_teste.pages.LoginPage;
 
 import java.time.Duration;
 
-@Epic("Login")
-@Feature("Tela de Login")
-public class LoginTest {
+public class BaseTest {
 
-    private WebDriver driver;
-    private LoginPage loginPage;
+    protected WebDriver driver;
+    protected Dotenv dotenv;
 
     @BeforeEach
     public void setup() {
-        WebDriverManager.chromedriver().setup();
+        dotenv = Dotenv.configure().ignoreIfMissing().load();
 
+        WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+        options.addArguments("--headless"); // Remova se quiser ver o navegador
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--remote-allow-origins=*");
@@ -31,8 +30,6 @@ public class LoginTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get("https://applications.fsbr.com.br/homolog/assine--frontend/");
-
-        loginPage = new LoginPage(driver);
     }
 
     @AfterEach
@@ -40,14 +37,5 @@ public class LoginTest {
         if (driver != null) {
             driver.quit();
         }
-    }
-
-    @Test
-    @Story("Login com credenciais válidas")
-    @DisplayName("Fazer Login na aplicação")
-    @Description("Teste que faz login com email e senha vindos do arquivo .env ou variáveis de ambiente")
-    @Severity(SeverityLevel.CRITICAL)
-    public void fazerLogin() {
-        loginPage.fazerLogin(); // ✅ agora funciona corretamente
     }
 }
